@@ -5,14 +5,9 @@
 from time import sleep
 import RPi.GPIO as GPIO
 
-def boardSetup():
-  #disable warnings
-  GPIO.setwarnings(False)
-  #Select GPIO Mode
-  GPIO.setmode(GPIO.BCM)
-
 #Create a class to control the RGB LED
 class RGB:
+  #Set up the pins used for the RGB LED when creating object
   def __init__(self, red_pin, green_pin, blue_pin):
     #set red,green and blue pins
     self.redPin = red_pin
@@ -23,6 +18,14 @@ class RGB:
     GPIO.setup(self.greenPin,GPIO.OUT)
     GPIO.setup(self.bluePin,GPIO.OUT)
 
+  #Set the pins to BCM
+  def boardSetup():
+    #disable warnings
+    GPIO.setwarnings(False)
+    #Select GPIO Mode
+    GPIO.setmode(GPIO.BCM)
+
+  #Turn the RGB LED on to a specified color for a duration
   def colorOn(self, red_val, green_val, blue_val, duration):
     #create objects for pins
     red = GPIO.PWM(self.redPin, 75)
@@ -37,9 +40,3 @@ class RGB:
     green.start(0)
     blue.start(0)
 
-#Set the board to GPIO BCM
-#boardSetup()
-#Create an RGB object
-#rgb = RGB(17,27,22)
-#Turn on the rgb
-#rgb.colorOn(255,0,0,3)
