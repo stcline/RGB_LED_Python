@@ -1,7 +1,6 @@
 #This script uses the RGB module to control an RGB LED from user input
 
 from RGB import RGB
-from time import sleep
 
 #Set the board to GPIO BCM
 RGB.boardSetup()
